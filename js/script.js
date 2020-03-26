@@ -1,7 +1,7 @@
 var arr2 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
-var arr3 = ['a', 'b', 'c', 'd'];
-var arr4 = ['A', 'B', 'C', 'D'];
-var arr5 = ['!', '@', '#', '$'];
+var arr3 = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+var arr4 = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+var arr5 = ['!', '@', '#', '$', '%'];
 
 document.getElementById('param-1').oninput = function() {
     // console.log(this.value);
@@ -28,16 +28,25 @@ function generatePass(event) {
 
     result.sort(compareRandom);
     // console.log(result);
-    var pass = '';
-    var passwordLength = parseInt(document.getElementById('password-length').value);
+    document.getElementById('out').innerHTML = '';
+    for (var k = 0; k < 6; k++) {
+        var pass = '';
+        var passwordLength = parseInt(document.getElementById('param-1').value);
 
-    for (var i = 0; i < passwordLength; i++) {
-        pass += result[i];
+        for (var i = 0; i < passwordLength; i++) {
+            pass += result[randomInteger(0, result.length - 1)];
+        };
+        console.log(pass);
+        document.getElementById('out').innerHTML += '<p>' + pass + '</p>';
     };
-    console.log(pass);
-    document.getElementById('out').innerHTML = '<p>' + pass + '</p>';
 };
 
 function compareRandom(a, b) {
     return Math.random() - 0.5;
+};
+
+function randomInteger(min, max) {
+    var rand = min - 0.5 + Math.random() * (max - min + 1)
+    rand = Math.round(rand);
+    return rand;
 };
